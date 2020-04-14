@@ -24,20 +24,22 @@
 - We can think of a linked list as consisting of a head node that contains two things:
   - A `data` value
   - A `rest` pointer to *another* linked list (namely all the remaining nodes)
+  
+      ```cpp
+      class node 
+      {
+        public:
+          int data;
+          node* rest;
+          node(int data, node* rest);
+      }
+      ```
 - We can write recursive functions that operate on a linked list this way:
   - Call yourself/your clone on the `rest` of the list, and possibly get back a result
   - Do something with that result and with `data`
 - Example, adding all the numbers in a linked list:
 
     ```cpp
-    class node 
-    {
-      public:
-        int data;
-        node* rest;
-        node(int data, node* rest);
-    }
-
     int add_up(node* node)
     {
       if (node == NULL) return 0;         // If at end of list, return
@@ -54,3 +56,26 @@
       return data + sum_rest;  
     }
     ```
+- Example 2, building a list:
+   - We can recursively create a list of the numbers up to 5 as follows:
+     - Create the list of the numbers up to 4
+     - Add in front a new node for 5
+
+   ```cpp
+   node* make_list(int n)
+   {
+      if (n == 0) return NULL;
+      node* rest = make_list(n - 1);
+      return new node(n, rest);
+   }
+   ```
+- Example use:
+   
+   ```cpp
+   int main()
+   {
+      node* list = make_list(5);
+      int sum = add_up(list);
+      cout << sum;
+   }
+   ```
