@@ -32,10 +32,9 @@
     ```cpp
     class node 
     {
-      private:
+      public:
         int data;
         node* rest;
-      public:
         node(int data, node* rest);
     }
 
