@@ -44,7 +44,7 @@
     {
       if (node == NULL) return 0;         // If at end of list, return
       int sum_rest = add_up(node->rest);  // Add up all the rest
-      return data + sum_rest;             // Now add the data to that
+      return node->data + sum_rest;       // Now add the data to that
     }
 
     // Or as a node member function:
